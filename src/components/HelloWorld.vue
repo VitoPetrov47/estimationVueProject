@@ -1,60 +1,107 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-router" target="_blank" rel="noopener">router</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-vuex" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+  <div>
+    <button @click="createDocument">Create Document</button>
   </div>
 </template>
 
 <script>
+import { ref } from 'vue';
+
 export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
-  }
-}
+  setup() {
+    const createDocument = () => {
+      const preHtml =
+          "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'><title>Export HTML To Doc</title></head><body>";
+      const postHtml = '</body></html>';
+
+      const contentHtml = `
+        <div style='page-break-before: always; position: fixed; top: 0; left: 0; width: 100%; text-align: left'>
+            <img src="logo.png" width="152" height="56" alt="logo">
+        </div>
+
+        <div style="width: 100%">
+          <p class="MsoNormal" style="text-align:justify"><span lang="ru" style="font-size:
+15.0pt;line-height:115%;font-family:Nunito;mso-fareast-font-family:Nunito;
+mso-bidi-font-family:Nunito">Hello,<b style="mso-bidi-font-weight:normal">
+          *CLIENT-NICK-NAME*!</b></span></p>
+
+          <h3 style="text-align:justify"><a name="_sd1mhtds8gts"></a><span lang="ru" style="font-size:12.0pt;line-height:115%;font-family:Nunito;mso-fareast-font-family:
+          Nunito;mso-bidi-font-family:Nunito">*DESCRIPTION*<o:p></o:p></span></h3>
+
+          <h2 align="center" style="text-align:center"><b style="mso-bidi-font-weight:normal; font-family:Nunito;">
+          CONDITIONS</b></h2>
+
+          <table width="601" border="1" cellspacing="0" cellpadding="0"
+                 style="
+                 border-collapse:collapse;mso-table-layout-alt:fixed;border:none;
+                 mso-yfti-tbllook:1536;mso-padding-alt:5.0pt 5.0pt 5.0pt 5.0pt;
+                 mso-border-alt:solid #F1C232 1.0pt;
+                 mso-border-insideh:1.0pt solid #F1C232;
+                 mso-border-insidev:1.0pt solid #F1C232;">
+              <tbody>
+                  <tr>
+                      <td width="229" style="border:solid #F1C232 1.0pt;background:#FFF2CC;"><p style="text-align:center;line-height:normal; font-size:12.0pt;font-family:Nunito;mso-fareast-font-family:Nunito;color:#434343;">Header 1</p></td>
+                      <td width="164" style="border:solid #F1C232 1.0pt;background:#FFF2CC;"><p style="text-align:center;line-height:normal; font-size:12.0pt;font-family:Nunito;mso-fareast-font-family:Nunito;color:#434343;">Header 2</p></td>
+                      <td width="208" style="border:solid #F1C232 1.0pt;background:#FFF2CC;"><p style="text-align:center;line-height:normal; font-size:12.0pt;font-family:Nunito;mso-fareast-font-family:Nunito;color:#434343;">Header 3</p></td>
+                  </tr>
+                  <tr>
+                      <td width="229" style="border:solid #F1C232 1.0pt;"><p style="text-align:center;line-height:normal; font-size:12.0pt;font-family:Nunito;mso-fareast-font-family:Nunito;color:#666666">Tail 1</p></td>
+                      <td width="164" style="border:solid #F1C232 1.0pt;"><p style="text-align:center;line-height:normal; font-size:12.0pt;font-family:Nunito;mso-fareast-font-family:Nunito;color:#666666">Tail 2</p></td>
+                      <td width="208" style="border:solid #F1C232 1.0pt;"><p style="text-align:center;line-height:normal; font-size:12.0pt;font-family:Nunito;mso-fareast-font-family:Nunito;color:#666666">Tail 3</p></td>
+                  </tr>
+                  <tr>
+                      <td width="229" style="border:solid #F1C232 1.0pt;"><p style="text-align:center;line-height:normal; font-size:12.0pt;font-family:Nunito;mso-fareast-font-family:Nunito;color:#666666">Tail 1</p></td>
+                      <td width="164" style="border:solid #F1C232 1.0pt;"><p style="text-align:center;line-height:normal; font-size:12.0pt;font-family:Nunito;mso-fareast-font-family:Nunito;color:#666666">Tail 2</p></td>
+                      <td width="208" style="border:solid #F1C232 1.0pt;"><p style="text-align:center;line-height:normal; font-size:12.0pt;font-family:Nunito;mso-fareast-font-family:Nunito;color:#666666">Tail 3</p></td>
+                  </tr>
+                  <tr>
+                      <td width="229" style="border:solid #F1C232 1.0pt;"><p style="text-align:center;line-height:normal; font-size:12.0pt;font-family:Nunito;mso-fareast-font-family:Nunito;color:#666666">Tail 1</p></td>
+                      <td width="164" style="border:solid #F1C232 1.0pt;"><p style="text-align:center;line-height:normal; font-size:12.0pt;font-family:Nunito;mso-fareast-font-family:Nunito;color:#666666">Tail 2</p></td>
+                      <td width="208" style="border:solid #F1C232 1.0pt;"><p style="text-align:center;line-height:normal; font-size:12.0pt;font-family:Nunito;mso-fareast-font-family:Nunito;color:#666666">Tail 3</p></td>
+                  </tr>
+              </tbody>
+          </table>
+        </div>
+      `;
+
+      // Combine content with "Page Break" at the beginning
+      // const html = preHtml + initialPageBreak + contentHtml + postHtml;
+      const html = preHtml + contentHtml + postHtml;
+
+      const blob = new Blob(['\ufeff', html], {
+        type: 'application/msword',
+      });
+
+      // Specify file name
+      const filename = 'document.doc';
+
+      if (navigator.msSaveOrOpenBlob) {
+        navigator.msSaveOrOpenBlob(blob, filename);
+      } else {
+        // Create a link to the file
+        const url = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(html);
+        const downloadLink = document.createElement('a');
+        document.body.appendChild(downloadLink);
+
+        // Setting the file name
+        downloadLink.href = url;
+        downloadLink.download = filename;
+
+        // Trigger the download
+        downloadLink.click();
+
+        document.body.removeChild(downloadLink);
+      }
+    };
+
+    return {
+      createDocument,
+    };
+  },
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+
 </style>

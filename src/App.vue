@@ -1,10 +1,25 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <component :is="layout">
+    <router-view></router-view>
+  </component>
 </template>
+<script>
+  import EmptyLayout from "@/layout/EmptyLayout";
+  import MainLayout from "@/layout/MainLayout";
+
+  export default {
+    name: 'App',
+    computed: {
+      layout() {
+        console.log('layout', this.$route.meta);
+        return (this.$route.meta.layout || 'empty') + '-layout'
+      }
+    },
+    components: {
+      EmptyLayout, MainLayout
+    }
+  }
+</script>
 
 <style lang="scss">
 #app {
@@ -16,7 +31,7 @@
 }
 
 nav {
-  padding: 30px;
+  padding: 10px;
 
   a {
     font-weight: bold;
